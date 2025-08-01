@@ -14,7 +14,9 @@
     "electron": "^37.2.4"
   },
   "dependencies": {
+    "axios": "^1.6.0",
     "dotenv": "^17.2.1",
+    "form-data": "^4.0.0",
     "openai": "^5.10.2"
   }
 }

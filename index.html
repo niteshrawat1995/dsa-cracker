@@ -7,7 +7,7 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.1);
       color: white;
       font-family: Arial, sans-serif;
       display: flex;
@@ -17,33 +17,45 @@
       -webkit-app-region: drag;
       position: relative;
       overflow: hidden;
+      transition: background-color 0.3s ease;
     }
     
     .container {
       text-align: center;
-      padding: 20px;
-      background-color: rgba(44, 44, 44, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      background-color: rgba(44, 44, 44, 0.3);
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       -webkit-app-region: no-drag;
       position: relative;
-      width: calc(100% - 40px);
-      height: calc(100% - 40px);
-      margin: 20px;
+      width: calc(100% - 60px);
+      height: calc(100% - 60px);
+      margin: 30px;
       max-width: none;
       max-height: none;
       overflow: auto;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      opacity: 0.7;
     }
     
     h1 {
       margin: 0;
-      font-size: 24px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      margin-bottom: 20px;
-      max-height: 150px;
+      font-size: 32px;
+      font-weight: 300;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+      margin-bottom: 30px;
+      max-height: 40vh;
       overflow-y: auto;
       word-wrap: break-word;
-      line-height: 1.3;
+      line-height: 1.4;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: left;
+      min-height: 100px;
+      white-space: pre-wrap;
     }
     
     p {
@@ -53,27 +65,31 @@
     }
     
     .input-group {
-      margin-top: 20px;
+      margin-top: 30px;
       display: flex;
-      gap: 10px;
+      gap: 15px;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
     }
     
     input[type="text"] {
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
       background-color: rgba(255, 255, 255, 0.1);
       color: white;
       font-size: 16px;
-      width: 200px;
+      width: 300px;
       outline: none;
-      transition: background-color 0.3s;
+      transition: all 0.3s;
+      backdrop-filter: blur(5px);
     }
     
     input[type="text"]:focus {
       background-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     }
     
     input[type="text"]::placeholder {
@@ -81,22 +97,30 @@
     }
     
     button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 5px;
+      padding: 12px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
       background-color: #007acc;
       color: white;
       font-size: 16px;
+      font-weight: 500;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: all 0.3s;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     button:hover {
       background-color: #005a9e;
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
     }
     
     button:active {
       background-color: #004074;
+      transform: translateY(0px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     button:disabled {
@@ -152,6 +176,209 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+    }
+    
+    .mic-button {
+      background-color: #dc3545;
+      position: relative;
+      min-width: 50px;
+    }
+    
+    .mic-button:hover:not(:disabled) {
+      background-color: #c82333;
+    }
+    
+    .mic-button:active:not(:disabled) {
+      background-color: #bd2130;
+    }
+    
+    .mic-button.recording {
+      background-color: #fd7e14;
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+    
+    
+    .service-mode {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .mode-toggle {
+      padding: 8px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      backdrop-filter: blur(5px);
+    }
+    
+    .mode-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .mode-toggle.active {
+      background-color: #007acc;
+      border-color: #007acc;
+    }
+    
+    .audio-player {
+      margin-top: 10px;
+      text-align: center;
+    }
+    
+    .audio-player audio {
+      width: 200px;
+      height: 30px;
+      opacity: 0.8;
+    }
+    
+    .assessment-results {
+      margin-top: 25px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+      display: none;
+      backdrop-filter: blur(5px);
+    }
+    
+    .score-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .score-value {
+      font-weight: bold;
+      color: #28a745;
+    }
+    
+    .score-value.medium {
+      color: #ffc107;
+    }
+    
+    .score-value.low {
+      color: #dc3545;
+    }
+    
+    /* Code snippet styling */
+    .code-block {
+      background-color: rgba(20, 20, 20, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 12px 0;
+      font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
+      position: relative;
+      backdrop-filter: blur(10px);
+    }
+    
+    .code-block code {
+      color: #f8f8f2;
+      background: none;
+      padding: 0;
+      font-family: inherit;
+      font-size: inherit;
+      white-space: pre;
+    }
+    
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .code-language {
+      color: #61dafb;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .copy-button {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      color: white;
+      padding: 4px 8px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .copy-button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .copy-button:active {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: none;
+    }
+    
+    /* Inline code styling */
+    .inline-code {
+      background-color: rgba(20, 20, 20, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+      font-size: 13px;
+      color: #f8f8f2;
+    }
+    
+    /* Syntax highlighting colors */
+    .code-keyword { color: #ff79c6; }
+    .code-string { color: #f1fa8c; }
+    .code-number { color: #bd93f9; }
+    .code-comment { color: #6272a4; font-style: italic; }
+    .code-function { color: #50fa7b; }
+    .code-variable { color: #8be9fd; }
+    
+    /* Overlay focus states */
+    body.overlay-focused {
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+    
+    body.overlay-focused .container {
+      background-color: rgba(44, 44, 44, 0.5);
+      opacity: 1;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Default unfocused state - more readable */
+    body:not(.overlay-focused) {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+    
+    body:not(.overlay-focused) .container {
+      opacity: 0.6;
     }
     
     /* Resize handles */
@@ -243,21 +470,54 @@
   <div class="resize-handle resize-se"></div>
   
   <div class="container">
-    <h1 id="displayText">Hello World!</h1>
+    <h1 id="displayText">Hello Hacker</h1>
     <p>This overlay is invisible in screen sharing</p>
     <div class="input-group">
       <input type="text" id="textInput" placeholder="Ask AI anything or just update text" />
       <div class="button-group">
-        <button id="submitBtn">Update</button>
         <button id="askAiBtn" class="ai-button">Ask AI</button>
+        <button id="micBtn" class="mic-button" title="Record Speech">🎤</button>
         <span id="loadingIndicator" class="loading">●●●</span>
       </div>
     </div>
+    
+    <div class="service-mode">
+      <span>Mode:</span>
+      <div id="whisperMode" class="mode-toggle active" data-mode="whisper">Whisper</div>
+      <div id="speechacesMode" class="mode-toggle" data-mode="speechaces">SpeechAces</div>
+    </div>
+    
+    <div class="audio-player" id="audioPlayer" style="display: none;">
+      <audio id="audioElement" controls></audio>
+    </div>
+    
+    <div id="assessmentResults" class="assessment-results">
+      <div class="score-item">
+        <span>Overall Score:</span>
+        <span id="overallScore" class="score-value">-</span>
+      </div>
+      <div class="score-item">
+        <span>Pronunciation:</span>
+        <span id="pronunciationScore" class="score-value">-</span>
+      </div>
+      <div class="score-item">
+        <span>Fluency:</span>
+        <span id="fluencyScore" class="score-value">-</span>
+      </div>
+      <div id="feedbackText" style="margin-top: 10px; font-style: italic; opacity: 0.8;"></div>
+    </div>
+    
     <div id="statusIndicator" class="status"></div>
-    <p style="font-size: 12px; opacity: 0.6; margin-top: 15px;">
-      Enter: Update text | Shift+Enter: Ask AI
-    </p>
+    <div style="font-size: 13px; opacity: 0.7; margin-top: 25px; padding: 15px; background-color: rgba(0, 0, 0, 0.2); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left;">
+        <span><strong>Shift+Enter:</strong> Ask AI</span>
+        <span><strong>Ctrl+Space:</strong> Record</span>
+        <span><strong>Ctrl+Shift+O:</strong> Toggle Focus</span>
+        <span><strong>Ctrl+Shift+T:</strong> Toggle Focus</span>
+      </div>
+    </div>
   </div>
+  
   <script src="renderer.js"></script>
   <script src="resize-handler.js"></script>
 </body>
